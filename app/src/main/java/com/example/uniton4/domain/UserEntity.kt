@@ -1,6 +1,8 @@
 package com.example.uniton4.domain
 
+import android.provider.ContactsContract
+
 data class UserEntity(
     val email: String,
-    val password: String
+    val nickname: String
 )
