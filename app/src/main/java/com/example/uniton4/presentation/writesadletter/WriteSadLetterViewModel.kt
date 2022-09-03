@@ -8,16 +8,20 @@ import com.example.uniton4.data.repository.WorryRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.reflect.KClass
 
 @HiltViewModel
 class WriteSadLetterViewModel @Inject constructor(
     private val worryRepository: WorryRepository
-): ViewModel() {
+) : ViewModel() {
+    val uiState = MutableLiveData<WriteSadLetterUiState>()
+
     private val _isActiveCompleteButton = MutableLiveData<Boolean>(false)
     val isActiveCompleteButton: LiveData<Boolean> = _isActiveCompleteButton
 
-    private val _circleType = MutableLiveData<WriteSadLetterCircleType>(WriteSadLetterCircleType.TEXT)
+    private var savedText: String? = null
+
+    private val _circleType =
+        MutableLiveData<WriteSadLetterCircleType>(WriteSadLetterCircleType.TEXT)
     val circleType: LiveData<WriteSadLetterCircleType> = _circleType
 
     fun handleCompleteButton(length: Int) {
@@ -37,14 +41,23 @@ class WriteSadLetterViewModel @Inject constructor(
     }
 
     fun saveTextWorry(text: String) {
+        savedText = text
+    }
+
+    fun postTextWorry() {
         viewModelScope.launch {
-            val createWorry = worryRepository.createWorry(text)
+            setState(WriteSadLetterUiState.Loading)
+            val createWorry = worryRepository.createWorry(savedText)
             if (createWorry.isSuccess) {
-
+                setState(WriteSadLetterUiState.Success)
             } else {
-
+                setState(WriteSadLetterUiState.Failed)
             }
         }
+    }
+
+    private fun setState(state: WriteSadLetterUiState) {
+        uiState.value = state
     }
 
     companion object {

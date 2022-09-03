@@ -31,7 +31,6 @@ class WorryRepository @Inject constructor(
             serviceApi.createWorry(
                 "Bearer ${localRepository.getUserKey().first() ?: ""}",
                 contents = contents,
-                imgUrl = imgUrl
             )
 
             Result.success(true)

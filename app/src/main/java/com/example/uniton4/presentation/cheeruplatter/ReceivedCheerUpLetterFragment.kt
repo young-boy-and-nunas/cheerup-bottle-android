@@ -11,10 +11,9 @@ import com.example.uniton4.MainViewModel
 import com.example.uniton4.NavigateScreenType
 import com.example.uniton4.databinding.FragmentReceivedCheerupLetterBinding
 import com.example.uniton4.domain.RandomWorryEntity
-import com.example.uniton4.domain.ReceivedCheerUpLetterEntity
 import com.example.uniton4.presentation.cheeruplatter.adapter.ReceivedCheerUpLetterAdapter
 import com.example.uniton4.presentation.cheeruplatter.adapter.ReceivedCheerUpLetterListener
-import com.example.uniton4.presentation.receivedsadletter.ReceivedSadLetterDialogFragment
+import com.example.uniton4.presentation.receivedsadletter.dialog.ReceivedSadLetterDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

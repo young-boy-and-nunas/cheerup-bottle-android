@@ -5,11 +5,10 @@ import com.example.uniton4.presentation.login.LoginFragment
 import com.example.uniton4.presentation.receivedsadletter.ReceivedSadLetterFragment
 import com.example.uniton4.presentation.cheeruplatter.ReceivedCheerUpLetterFragment
 import com.example.uniton4.presentation.join.JoinFragment
-import com.example.uniton4.presentation.receivedsadletter.ReceivedSadLetterDialogFragment
+import com.example.uniton4.presentation.receivedsadletter.dialog.ReceivedSadLetterDialogFragment
 import com.example.uniton4.presentation.setting.SettingFragment
 import com.example.uniton4.presentation.setting.mypage.MyPageFragment
 import com.example.uniton4.presentation.setting.removeaccount.RemoveAccountDialogFragment
-import com.example.uniton4.presentation.writecheer.WriteCheerFragment
 import com.example.uniton4.presentation.writesadletter.WriteSadLetterFragment
 
 enum class NavigateScreenType(val fragment: Fragment) {

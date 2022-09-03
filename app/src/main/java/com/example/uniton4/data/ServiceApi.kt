@@ -29,12 +29,10 @@ interface ServiceApi {
         @Body body: LoginRequest
     ):LoginEntity
 
-    @Multipart
     @POST("/worry")
     suspend fun createWorry(
         @Header("Authorization") auth: String,
         @Query("contents") contents: String?,
-        @Part("imgUrl") imgUrl: MultipartBody.Part?,
         @Query("userSeq") userSeq: String? = null,
     )
 
@@ -48,16 +46,13 @@ interface ServiceApi {
         @Header("Authorization") auth: String,
     )
 
-    @Multipart
     @POST("/cheer/cheer")
     suspend fun makeCheer(
         @Header("Authorization") auth: String,
         @Query("contents") contents: String,
-        @Part("audioMultipartFile") audioMultipartFile: MultipartBody.Part?,
-        @Part("imageMultipartFile") imageMultipartFile: MultipartBody.Part?,
-        @Query("imgUrl") imgUrl: String,
-        @Query("audioUrl") audioUrl: String,
-        @Query("userId") userId: Int,
+        @Query("imgUrl") imgUrl: String? = null,
+        @Query("audioUrl") audioUrl: String? = null,
+        @Query("userId") userId: Int? = null,
         @Query("worryId") worryId: Int,
     )
 

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -12,6 +13,8 @@ import com.example.uniton4.NavigateScreenType
 import com.example.uniton4.R
 import com.example.uniton4.databinding.FragmentWriteSadLetterBinding
 import com.example.uniton4.databinding.FragmentWriteSadLetterImageBinding
+import com.example.uniton4.extensions.closeSelf
+import com.example.uniton4.presentation.cheeruplatter.ReceivedCheerUpLetterFragment
 import com.example.uniton4.presentation.writesadletter.audio.WriteSadLetterAudioFragment
 import com.example.uniton4.presentation.writesadletter.dialog.WriteSadLetterCompleteDialogFragment
 import com.example.uniton4.presentation.writesadletter.image.WriteSadLetterImageFragment
@@ -20,7 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlin.reflect.KClass
 
 @AndroidEntryPoint
-class WriteSadLetterFragment: Fragment() {
+class WriteSadLetterFragment : Fragment(), WriteSadLetterListener {
     private lateinit var binding: FragmentWriteSadLetterBinding
     private val viewModel: WriteSadLetterViewModel by viewModels()
     private val parentViewModel: MainViewModel by activityViewModels()
@@ -104,12 +107,31 @@ class WriteSadLetterFragment: Fragment() {
                 }
             }
         }
+
+
+        // 우선 Text 만 전송 가능하게.
+        viewModel.uiState.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                is WriteSadLetterUiState.Success -> {
+                    Toast.makeText(requireContext(), "사연 작성에 성공했습니다.", Toast.LENGTH_SHORT).show()
+                    closeSelf()
+                    parentViewModel.navigateByAdd(NavigateScreenType.RECEIVED_CHEER_UP_LETTER)
+                }
+                is WriteSadLetterUiState.Failed -> {
+                    Toast.makeText(requireContext(), "사연 작성에 실패했습니다.", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
     private fun replaceFragment(classType: Fragment) {
         childFragmentManager.beginTransaction()
             .replace(R.id.sadLetterFragmentContainer, classType)
             .commit()
+    }
+
+    override fun setOnClickComplete() {
+        viewModel.postTextWorry()
     }
 
     companion object {
