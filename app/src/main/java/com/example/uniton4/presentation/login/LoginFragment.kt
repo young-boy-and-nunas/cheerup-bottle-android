@@ -50,6 +50,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
                 }
                 LoginUiState.Success -> {
                     parentViewModel.navigateByReplace(NavigateScreenType.LOGIN)
+                    parentViewModel.navigateByReplace(NavigateScreenType.RECEIVED_SAD_LETTER)
                 }
                 else -> Unit
             }
@@ -66,7 +67,6 @@ class LoginFragment : Fragment(), View.OnClickListener {
                     binding.loginIdEdittext.text.toString(),
                     binding.loginPasswordEdittext.text.toString(),
                 )
-//                parentViewModel.navigateByReplace(NavigateScreenType.RECEIVED_SAD_LETTER)
             }
             else -> Unit
         }

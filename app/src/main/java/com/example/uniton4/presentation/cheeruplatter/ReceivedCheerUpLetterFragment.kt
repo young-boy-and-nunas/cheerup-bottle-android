@@ -38,6 +38,9 @@ class ReceivedCheerUpLetterFragment: Fragment() {
         binding.addButton.setOnClickListener {
             parentViewModel.navigateByReplace(NavigateScreenType.WRITE_SED_LETTER)
         }
+        binding.header.headerSettingButton.setOnClickListener {
+            parentViewModel.navigateByAdd(NavigateScreenType.SETTING)
+        }
     }
 
     private fun createMockData(): List<ReceivedCheerUpLetterEntity> {
