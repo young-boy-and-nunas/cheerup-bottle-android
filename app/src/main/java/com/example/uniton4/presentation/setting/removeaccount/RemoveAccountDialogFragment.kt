@@ -1,13 +1,12 @@
 package com.example.uniton4.presentation.setting.removeaccount
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowInsets
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.example.uniton4.MainViewModel
 import com.example.uniton4.NavigateScreenType
@@ -20,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_remove_account_dialog.view.*
 @AndroidEntryPoint
 class RemoveAccountDialogFragment private constructor() : DialogFragment(), View.OnClickListener {
     private lateinit var binding: FragmentRemoveAccountDialogBinding
-    private val parentViewModel: MainViewModel by viewModels()
+    private val parentViewModel: MainViewModel by activityViewModels()
     private val viewModel: RemoveAccountViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,9 +36,7 @@ class RemoveAccountDialogFragment private constructor() : DialogFragment(), View
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.container.setOnTouchListener { _, _ ->
-            return@setOnTouchListener true
-        }
+
         binding.panel.cancel_button.setOnClickListener(this)
         binding.panel.confirm_button.setOnClickListener(this)
         observe()
@@ -49,9 +46,10 @@ class RemoveAccountDialogFragment private constructor() : DialogFragment(), View
         viewModel.resultLiveData.observe(viewLifecycleOwner) { isSucceed ->
             if (isSucceed) {
                 parentViewModel.navigateByReplace(NavigateScreenType.LOGIN)
-            } else {
                 dismiss()
+            } else {
                 Toast.makeText(context, "계정 삭제 실패!!!", Toast.LENGTH_LONG).show()
+                dismiss()
             }
         }
     }

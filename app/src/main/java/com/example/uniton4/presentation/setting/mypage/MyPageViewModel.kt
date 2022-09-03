@@ -1,6 +1,5 @@
 package com.example.uniton4.presentation.setting.mypage
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -27,7 +26,6 @@ class MyPageViewModel @Inject constructor(
 
             if (userResult.isSuccess) {
                 userResult.getOrNull()?.let {
-                    Log.d("coqkf",it.toString())
                     emailLiveData.postValue(it.email)
                     nicknameLiveData.postValue(it.nickname)
                 }
