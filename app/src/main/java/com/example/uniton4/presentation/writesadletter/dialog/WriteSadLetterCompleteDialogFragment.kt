@@ -4,11 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import com.example.uniton4.MainViewModel
+import com.example.uniton4.NavigateScreenType
 import com.example.uniton4.databinding.FragmentWriteSadLetterDialogBinding
 
 class WriteSadLetterCompleteDialogFragment: DialogFragment() {
     private lateinit var binding: FragmentWriteSadLetterDialogBinding
+    private val parentViewModel: MainViewModel by activityViewModels()
+    private val viewModel: WriteSadLetterCompleteViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,6 +37,9 @@ class WriteSadLetterCompleteDialogFragment: DialogFragment() {
         }
 
         binding.okButton.setOnClickListener {
+          //  viewModel.postTextWorry()
+            parentViewModel.navigateByReplace(NavigateScreenType.WRITE_SED_LETTER)
+            Toast.makeText(requireContext(), "작성이 완료되었습니다.", Toast.LENGTH_SHORT).show()
             dismiss()
         }
     }

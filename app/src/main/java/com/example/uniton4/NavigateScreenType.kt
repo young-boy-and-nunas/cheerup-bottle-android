@@ -22,5 +22,4 @@ enum class NavigateScreenType(val fragment: Fragment) {
     SETTING(SettingFragment.newInstance()),
     REMOVE_ACCOUNT(RemoveAccountDialogFragment.newInstance()),
     MYPAGE(MyPageFragment.newInstance()),
-    WRITE_CHEER(WriteCheerFragment.newInstance()),
 }

@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="32dp"
+            android:textSize="18sp"
             android:text="사연을 업로드하면 유리병 1개가 차감됩니다.\n사연을 올리시겠습니까?"
             android:textColor="@color/text_color"
             app:layout_constraintEnd_toEndOf="parent"

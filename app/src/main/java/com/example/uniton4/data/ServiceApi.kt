@@ -35,7 +35,7 @@ interface ServiceApi {
         @Header("Authorization") auth: String,
         @Query("contents") contents: String?,
         @Part("imgUrl") imgUrl: MultipartBody.Part?,
-        @Query("userSeq") userSeq: String?,
+        @Query("userSeq") userSeq: String? = null,
     )
 
     @GET("/user")
@@ -68,6 +68,6 @@ interface ServiceApi {
 
     @POST("/cheer/update-check")
     suspend fun updateCheck(
-        @Query("cheerSeq") cheerSeq: Int
+        @Query("cheerSeq") cheerSeq: Int? = null
     )
 }

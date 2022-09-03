@@ -1,23 +1,19 @@
 package com.example.uniton4.presentation.writesadletter
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.uniton4.R
-import com.example.uniton4.databinding.FragmentWriteSadLetterBinding
-import com.example.uniton4.databinding.FragmentWriteSadLetterImageBinding
-import com.example.uniton4.presentation.writesadletter.audio.WriteSadLetterAudioFragment
-import com.example.uniton4.presentation.writesadletter.image.WriteSadLetterImageFragment
-import com.example.uniton4.presentation.writesadletter.text.WriteSadLetterTextFragment
-import dagger.hilt.android.AndroidEntryPoint
+import androidx.lifecycle.viewModelScope
+import com.example.uniton4.data.repository.WorryRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 import kotlin.reflect.KClass
 
-class WriteSadLetterViewModel: ViewModel() {
+@HiltViewModel
+class WriteSadLetterViewModel @Inject constructor(
+    private val worryRepository: WorryRepository
+): ViewModel() {
     private val _isActiveCompleteButton = MutableLiveData<Boolean>(false)
     val isActiveCompleteButton: LiveData<Boolean> = _isActiveCompleteButton
 
@@ -38,6 +34,17 @@ class WriteSadLetterViewModel: ViewModel() {
 
     fun inActiveCompleteButton() {
         _isActiveCompleteButton.value = false
+    }
+
+    fun saveTextWorry(text: String) {
+        viewModelScope.launch {
+            val createWorry = worryRepository.createWorry(text)
+            if (createWorry.isSuccess) {
+
+            } else {
+
+            }
+        }
     }
 
     companion object {
