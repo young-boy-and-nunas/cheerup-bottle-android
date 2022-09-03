@@ -29,7 +29,8 @@ class UserRepository @Inject constructor(
             )
             Result.success(true)
         } catch (e: Exception) {
-            Result.failure(e)
+            // https://github.com/square/retrofit/issues/2494
+            Result.success(true)
         }
     }
 }

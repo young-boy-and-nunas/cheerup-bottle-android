@@ -6,15 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsets
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
+import com.example.uniton4.MainViewModel
+import com.example.uniton4.NavigateScreenType
 import com.example.uniton4.R
 import com.example.uniton4.databinding.FragmentRemoveAccountDialogBinding
 import com.example.uniton4.extensions.closeSelf
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_remove_account_dialog.view.*
 
+@AndroidEntryPoint
 class RemoveAccountDialogFragment private constructor() : DialogFragment(), View.OnClickListener {
     private lateinit var binding: FragmentRemoveAccountDialogBinding
-
+    private val parentViewModel: MainViewModel by viewModels()
+    private val viewModel: RemoveAccountViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(STYLE_NORMAL, R.style.TransparentTheme)
@@ -30,21 +37,22 @@ class RemoveAccountDialogFragment private constructor() : DialogFragment(), View
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setFullScreen()
         binding.container.setOnTouchListener { _, _ ->
             return@setOnTouchListener true
         }
         binding.panel.cancel_button.setOnClickListener(this)
         binding.panel.confirm_button.setOnClickListener(this)
+        observe()
     }
 
-    private fun setFullScreen() {
-        val window = dialog?.window ?: return
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        } else {
-            @Suppress("DEPRECATION")
-            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+    private fun observe() {
+        viewModel.resultLiveData.observe(viewLifecycleOwner) { isSucceed ->
+            if (isSucceed) {
+                parentViewModel.navigateByReplace(NavigateScreenType.LOGIN)
+            } else {
+                dismiss()
+                Toast.makeText(context, "계정 삭제 실패!!!", Toast.LENGTH_LONG).show()
+            }
         }
     }
 
@@ -54,7 +62,7 @@ class RemoveAccountDialogFragment private constructor() : DialogFragment(), View
                 closeSelf()
             }
             binding.panel.confirm_button -> {
-                closeSelf()
+                viewModel.withThrowUser()
             }
         }
     }
