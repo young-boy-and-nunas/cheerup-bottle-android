@@ -1,11 +1,8 @@
 package com.example.uniton4
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.activity.viewModels
-import com.example.uniton4.presentation.LoginFragment
-import com.example.uniton4.presentation.ReceivedSadLetterFragment
-import com.example.uniton4.presentation.cheeruplatter.ReceivedCheerUpLetterFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -15,15 +12,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        supportActionBar?.hide()
+        navigateToFragment(checkLoginState())
         observe()
-
-//        supportFragmentManager.beginTransaction()
-//            .add(R.id.fragment_container, ReceivedCheerUpLetterFragment.newInstance())
-//            .commit()
-
-
-        replaceFragment(NavigateScreenType.RECEIVED_CHEER_UP_LETTER)
-      //   navigateToFragment(checkLoginState())
     }
 
     private fun observe() {
