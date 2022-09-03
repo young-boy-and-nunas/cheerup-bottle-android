@@ -11,13 +11,22 @@ import com.example.uniton4.NavigateScreenType
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SplashActivity: AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
     private val viewModel: SplashViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        observe()
-        viewModel.validateUser()
+
+        Handler().postDelayed({
+            val intent = Intent(this, MainActivity::class.java).apply {
+                putExtra(TARGET_SCREEN, NavigateScreenType.LOGIN.ordinal)
+            }
+            startActivity(intent)
+            finish()
+        }, 2000)
+
+        // observe()
+        // viewModel.validateUser()
     }
 
     private fun observe() {
