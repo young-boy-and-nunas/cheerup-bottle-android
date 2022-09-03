@@ -1,91 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     >
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_arrow_back_outline"
-        />
+    <data>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        style="@style/text_style"
-        android:id="@+id/title"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:text="사연 작성"
-        app:layout_constraintBottom_toBottomOf="@+id/backButton"
-        app:layout_constraintEnd_toStartOf="@+id/completeButton"
-        app:layout_constraintStart_toEndOf="@+id/backButton"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        <variable
+            name="isActive"
+            type="java.lang.Boolean"
+            />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        style="@style/text_style"
-        android:id="@+id/completeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:text="완료"
-        android:paddingHorizontal="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        <variable
+            name="circleType"
+            type="com.example.uniton4.presentation.writesadletter.WriteSadLetterCircleType"
+            />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        style="@style/text_style"
-        android:id="@+id/textCircle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/drawable_select_circle"
-        android:text="T"
-        android:gravity="center"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/backButton"/>
+        <import type="com.example.uniton4.presentation.writesadletter.WriteSadLetterCircleType"/>
+    </data>
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imageCircle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/drawable_select_circle"
-        android:src="@drawable/ic_picture"
-        android:gravity="center"
-        android:padding="8dp"
-        android:layout_marginStart="12dp"
-        app:layout_constraintStart_toEndOf="@id/textCircle"
-        app:layout_constraintTop_toBottomOf="@id/backButton"/>
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/audioCircle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/drawable_select_circle"
-        android:src="@drawable/ic_sound"
-        android:gravity="center"
-        android:padding="8dp"
-        android:layout_marginStart="12dp"
-        app:layout_constraintStart_toEndOf="@id/imageCircle"
-        app:layout_constraintTop_toBottomOf="@id/backButton"/>
-
-    <FrameLayout
-        android:id="@+id/sadLetterFragmentContainer"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textCircle"
-        />
+        android:layout_height="match_parent"
+        >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_arrow_back_outline"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title"
+            style="@style/text_style"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="사연 작성"
+            android:textColor="@color/text_color"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/backButton"
+            app:layout_constraintEnd_toStartOf="@+id/completeButton"
+            app:layout_constraintStart_toEndOf="@+id/backButton"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/completeButton"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:paddingHorizontal="16dp"
+            android:text="완료"
+            android:clickable="@{ isActive }"
+            android:textColor="@{ isActive ? @color/main_color : @color/gray2 }"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/textCircle"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/drawable_selector_circle"
+            android:gravity="center"
+            android:padding="8dp"
+            android:src="@drawable/ic_text_word"
+            android:tint="@{ circleType == WriteSadLetterCircleType.TEXT ? @color/main_color : @color/gray5 }"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/backButton"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageCircle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/drawable_selector_circle"
+            android:gravity="center"
+            android:padding="8dp"
+            android:src="@drawable/ic_picture"
+            android:tint="@{ circleType == WriteSadLetterCircleType.IMAGE ? @color/main_color : @color/gray5 }"
+            app:layout_constraintStart_toEndOf="@id/textCircle"
+            app:layout_constraintTop_toBottomOf="@id/backButton"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/audioCircle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/drawable_selector_circle"
+            android:gravity="center"
+            android:padding="8dp"
+            android:src="@drawable/ic_sound"
+            android:tint="@{ circleType == WriteSadLetterCircleType.AUDIO ? @color/main_color : @color/gray5 }"
+            app:layout_constraintStart_toEndOf="@id/imageCircle"
+            app:layout_constraintTop_toBottomOf="@id/backButton"
+            />
+
+        <FrameLayout
+            android:id="@+id/sadLetterFragmentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textCircle"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
