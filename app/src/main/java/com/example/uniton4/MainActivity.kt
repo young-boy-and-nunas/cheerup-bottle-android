@@ -1,7 +1,7 @@
 package com.example.uniton4
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.uniton4.presentation.LoginFragment
 import com.example.uniton4.presentation.ReceivedSadLetterFragment
 
@@ -9,7 +9,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        supportActionBar?.hide()
         navigateToFragment(checkLoginState())
     }
 
