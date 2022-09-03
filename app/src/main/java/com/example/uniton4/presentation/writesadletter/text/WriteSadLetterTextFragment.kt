@@ -38,6 +38,7 @@ class WriteSadLetterTextFragment : Fragment() {
 
             override fun onTextChanged(sequence: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 checkTextLength(sequence)
+                parentViewModel.saveTextWorry(sequence.toString())
             }
 
             override fun afterTextChanged(sequence: Editable?) = Unit

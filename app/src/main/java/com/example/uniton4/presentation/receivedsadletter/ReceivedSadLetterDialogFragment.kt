@@ -15,10 +15,9 @@ import com.example.uniton4.NavigateScreenType
 import com.example.uniton4.R
 import com.example.uniton4.databinding.FragmentReceivedSadLetterDialogBinding
 import com.example.uniton4.domain.RandomWorryEntity
-import com.example.uniton4.domain.ReceivedCheerUpLetterEntity
-import com.example.uniton4.extensions.closeSelf
 import com.example.uniton4.presentation.receivedsadletter.image.ReceivedWorryImageFragment
 import com.example.uniton4.presentation.receivedsadletter.text.ReceivedWorryTextFragment
+import com.example.uniton4.presentation.writecheer.WriteCheerFragment
 
 class ReceivedSadLetterDialogFragment private constructor() : DialogFragment(),
     View.OnClickListener {
@@ -91,7 +90,8 @@ class ReceivedSadLetterDialogFragment private constructor() : DialogFragment(),
                 dismiss()
             }
             binding.writeButton -> {
-                parentViewModel.navigateByAdd(NavigateScreenType.WRITE_CHEER)
+                WriteCheerFragment()
+                    .show(childFragmentManager, WriteCheerFragment::class.java.name)
             }
         }
     }
