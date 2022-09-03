@@ -15,9 +15,6 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
         navigateToFragment(checkLoginState())
         observe()
-
-
-        replaceFragment(NavigateScreenType.WRITE_SED_LETTER)
     }
 
     private fun observe() {
