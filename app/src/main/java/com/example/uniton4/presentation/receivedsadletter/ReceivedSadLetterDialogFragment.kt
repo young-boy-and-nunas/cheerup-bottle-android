@@ -14,11 +14,14 @@ import com.example.uniton4.NavigateScreenType
 import com.example.uniton4.R
 import com.example.uniton4.databinding.FragmentReceivedSadLetterDialogBinding
 import com.example.uniton4.extensions.closeSelf
+import com.example.uniton4.presentation.receivedsadletter.image.ReceivedWorryImageFragment
+import com.example.uniton4.presentation.receivedsadletter.text.ReceivedWorryTextFragment
 
 class ReceivedSadLetterDialogFragment private constructor() : DialogFragment(),
     View.OnClickListener {
     private lateinit var binding: FragmentReceivedSadLetterDialogBinding
     private val parentViewModel: MainViewModel by activityViewModels()
+    private var isText = true
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(STYLE_NORMAL, R.style.TransparentTheme)
@@ -40,6 +43,19 @@ class ReceivedSadLetterDialogFragment private constructor() : DialogFragment(),
         }
         binding.closeButton.setOnClickListener(this)
         binding.writeButton.setOnClickListener(this)
+        initView()
+    }
+
+    private fun initView(){
+        if(isText){
+            parentFragmentManager.beginTransaction()
+                .add(R.id.frame_layout, ReceivedWorryTextFragment.newInstance())
+                .commit()
+        }else{
+            parentFragmentManager.beginTransaction()
+                .add(R.id.frame_layout, ReceivedWorryImageFragment.newInstance())
+                .commit()
+        }
     }
 
     private fun setFullScreen() {
@@ -59,12 +75,10 @@ class ReceivedSadLetterDialogFragment private constructor() : DialogFragment(),
 
     override fun onClick(view: View?) {
         when (view) {
-            binding.closeButton->{
-//                closeSelf()
+            binding.closeButton -> {
                 parentViewModel.navigateByReplace(NavigateScreenType.RECEIVED_CHEER_UP_LETTER)
             }
-            binding.writeButton->{
-                // TODO: save letter.
+            binding.writeButton -> {
                 parentViewModel.navigateByAdd(NavigateScreenType.WRITE_CHEER)
             }
         }

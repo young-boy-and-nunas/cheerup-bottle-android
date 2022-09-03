@@ -66,6 +66,16 @@
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/nickname" />
 
+                <FrameLayout
+                    android:id="@+id/frame_layout"
+                    android:layout_width="264dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toTopOf="@id/write_button"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/date"
+                    android:layout_marginBottom="20dp"/>
+
                 <TextView
                     style="@style/text_style"
                     android:layout_width="264dp"
