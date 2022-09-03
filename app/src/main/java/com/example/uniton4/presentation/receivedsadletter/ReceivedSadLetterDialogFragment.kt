@@ -10,8 +10,10 @@ import android.view.WindowInsets
 import androidx.fragment.app.DialogFragment
 import com.example.uniton4.R
 import com.example.uniton4.databinding.FragmentReceivedSadLetterDialogBinding
+import com.example.uniton4.extensions.closeSelf
 
-class ReceivedSadLetterDialogFragment private constructor() : DialogFragment() {
+class ReceivedSadLetterDialogFragment private constructor() : DialogFragment(),
+    View.OnClickListener {
     private lateinit var binding: FragmentReceivedSadLetterDialogBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +32,8 @@ class ReceivedSadLetterDialogFragment private constructor() : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setFullScreen()
+        binding.closeButton.setOnClickListener(this)
+        binding.writeButton.setOnClickListener(this)
     }
 
     private fun setFullScreen() {
@@ -45,5 +49,17 @@ class ReceivedSadLetterDialogFragment private constructor() : DialogFragment() {
     companion object {
         @JvmStatic
         fun newInstance() = ReceivedSadLetterDialogFragment()
+    }
+
+    override fun onClick(view: View?) {
+        when (view) {
+            binding.closeButton->{
+                closeSelf()
+            }
+            binding.writeButton->{
+                // TODO: save letter.
+                closeSelf()
+            }
+        }
     }
 }
