@@ -11,6 +11,8 @@ import com.example.uniton4.NavigateScreenType
 import com.example.uniton4.R
 import com.example.uniton4.databinding.FragmentSettingBinding
 import com.example.uniton4.extensions.closeSelf
+import com.example.uniton4.presentation.setting.removeaccount.RemoveAccountDialogFragment
+import com.example.uniton4.presentation.writesadletter.dialog.WriteSadLetterCompleteDialogFragment
 
 class SettingFragment private constructor() : Fragment(), View.OnClickListener {
     private val parentViewModel: MainViewModel by activityViewModels()
@@ -42,7 +44,9 @@ class SettingFragment private constructor() : Fragment(), View.OnClickListener {
                 parentViewModel.navigateByAdd(NavigateScreenType.MYPAGE)
             }
             binding.removeAccount -> {
-                parentViewModel.navigateByAdd(NavigateScreenType.REMOVE_ACCOUNT)
+                RemoveAccountDialogFragment
+                    .newInstance()
+                    .show(childFragmentManager, RemoveAccountDialogFragment::class.java.name)
             }
         }
     }

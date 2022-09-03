@@ -1,14 +1,10 @@
 package com.example.uniton4.presentation.setting.mypage
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.uniton4.data.repository.UserRepository
-import com.example.uniton4.data.request.LoginRequest
-import com.example.uniton4.domain.LoginEntity
 import com.example.uniton4.domain.UserEntity
-import com.example.uniton4.presentation.login.LoginUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -30,7 +26,6 @@ class MyPageViewModel @Inject constructor(
 
             if (userResult.isSuccess) {
                 userResult.getOrNull()?.let {
-                    Log.d("coqkf",it.toString())
                     emailLiveData.postValue(it.email)
                     nicknameLiveData.postValue(it.nickname)
                 }
