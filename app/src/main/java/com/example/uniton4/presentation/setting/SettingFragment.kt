@@ -37,6 +37,7 @@ class SettingFragment private constructor() : Fragment(), View.OnClickListener {
                 closeSelf()
             }
             binding.mypage -> {
+                parentViewModel.navigateByAdd(NavigateScreenType.MYPAGE)
             }
             binding.removeAccount -> {
                 parentViewModel.navigateByAdd(NavigateScreenType.REMOVE_ACCOUNT)
