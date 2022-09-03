@@ -18,13 +18,12 @@ class RemoveAccountViewModel @Inject constructor(
     val resultLiveData = MutableLiveData<Boolean>()
 
     fun withThrowUser() {
-        resultLiveData.value = true
-//        viewModelScope.launch {
-//            val userResult: Result<Boolean> = async {
-//                userRepository.withThrowUser()
-//            }.await()
-//
-//            resultLiveData.value = userResult.isSuccess
-//        }
+        viewModelScope.launch {
+            val userResult: Result<Boolean> = async {
+                userRepository.withThrowUser()
+            }.await()
+
+            resultLiveData.value = userResult.isSuccess
+        }
     }
 }
