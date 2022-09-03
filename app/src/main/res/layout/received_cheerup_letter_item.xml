@@ -34,12 +34,11 @@
                 style="@style/text_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="sehee님의 사연"
+                android:text="나의 고민"
                 android:textColor="@color/gray2"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="테스트님의 사연"
                 />
 
             <TextView
