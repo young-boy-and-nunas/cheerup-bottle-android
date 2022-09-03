@@ -8,6 +8,16 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="button_activated_color">#FFF5B785</color>
-    <color name="button_inactivated_color">#FFFFDABC</color>
+    <color name="main_color">#FF8A00</color>
+    <color name="sub_color">#F5B785</color>
+    <color name="sub_color2">#FFDABC</color>
+    <color name="text_color">#343434</color>
+    <color name="error_color">#FF7373</color>
+    <color name="gray1">#8c8c8c</color>
+    <color name="gray2">#bebebe</color>
+    <color name="gray3">#d9d9d9</color>
+    <color name="gray4">#e2e2e2</color>
+    <color name="gray5">#d8d8d8</color>
+    <color name="gray6">#f2f2f2</color>
+    
 </resources>
