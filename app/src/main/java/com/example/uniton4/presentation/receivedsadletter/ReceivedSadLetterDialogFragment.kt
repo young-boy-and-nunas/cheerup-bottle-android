@@ -15,8 +15,8 @@ import com.example.uniton4.NavigateScreenType
 import com.example.uniton4.R
 import com.example.uniton4.databinding.FragmentReceivedSadLetterDialogBinding
 import com.example.uniton4.domain.RandomWorryEntity
-import com.example.uniton4.domain.ReceivedCheerUpLetterEntity
-import com.example.uniton4.extensions.closeSelf
+import com.example.uniton4.presentation.receivedsadletter.image.ReceivedWorryImageFragment
+import com.example.uniton4.presentation.receivedsadletter.text.ReceivedWorryTextFragment
 import com.example.uniton4.presentation.writecheer.WriteCheerFragment
 
 class ReceivedSadLetterDialogFragment private constructor() : DialogFragment(),
@@ -24,6 +24,7 @@ class ReceivedSadLetterDialogFragment private constructor() : DialogFragment(),
     private lateinit var binding: FragmentReceivedSadLetterDialogBinding
     private val parentViewModel: MainViewModel by activityViewModels()
     private var listener: ReceivedSadLetterListener? = null
+    private var isText = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +49,7 @@ class ReceivedSadLetterDialogFragment private constructor() : DialogFragment(),
     }
 
     private fun initViews() {
+        initFrameLayout()
         binding.container.setOnTouchListener { _, _ ->
             return@setOnTouchListener true
         }
@@ -56,8 +58,20 @@ class ReceivedSadLetterDialogFragment private constructor() : DialogFragment(),
 
         val worryEntity = arguments?.getParcelable<RandomWorryEntity>(WORRY_ENTITY)
         binding.textView.text = worryEntity?.contents
-    }
 
+
+    }
+    private fun initFrameLayout(){
+        if(isText){
+            childFragmentManager.beginTransaction()
+                .add(R.id.frame_layout, ReceivedWorryTextFragment.newInstance())
+                .commit()
+        }else{
+            childFragmentManager.beginTransaction()
+                .add(R.id.frame_layout, ReceivedWorryImageFragment.newInstance())
+                .commit()
+        }
+    }
     companion object {
         private const val WORRY_ENTITY = "worry_entity"
         @JvmStatic
@@ -71,11 +85,11 @@ class ReceivedSadLetterDialogFragment private constructor() : DialogFragment(),
     override fun onClick(view: View?) {
         when (view) {
             binding.closeButton -> {
+
                 listener?.onClickClose()
                 dismiss()
             }
             binding.writeButton -> {
-                // TODO: save letter.
                 WriteCheerFragment()
                     .show(childFragmentManager, WriteCheerFragment::class.java.name)
             }
