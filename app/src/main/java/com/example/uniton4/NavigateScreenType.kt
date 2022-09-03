@@ -9,6 +9,7 @@ import com.example.uniton4.presentation.receivedsadletter.ReceivedSadLetterDialo
 import com.example.uniton4.presentation.setting.SettingFragment
 import com.example.uniton4.presentation.setting.mypage.MyPageFragment
 import com.example.uniton4.presentation.setting.removeaccount.RemoveAccountDialogFragment
+import com.example.uniton4.presentation.writecheer.WriteCheerFragment
 import com.example.uniton4.presentation.writesadletter.WriteSadLetterFragment
 
 enum class NavigateScreenType(val fragment: Fragment) {
@@ -20,5 +21,6 @@ enum class NavigateScreenType(val fragment: Fragment) {
     JOIN(JoinFragment.newInstance()),
     SETTING(SettingFragment.newInstance()),
     REMOVE_ACCOUNT(RemoveAccountDialogFragment.newInstance()),
-    MYPAGE(MyPageFragment.newInstance())
+    MYPAGE(MyPageFragment.newInstance()),
+    WRITE_CHEER(WriteCheerFragment.newInstance()),
 }

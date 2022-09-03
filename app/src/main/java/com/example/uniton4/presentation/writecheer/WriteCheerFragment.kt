@@ -1,7 +1,8 @@
-package com.example.uniton4.presentation.receivedsadletter
+package com.example.uniton4.presentation.writecheer
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,13 +13,15 @@ import androidx.fragment.app.activityViewModels
 import com.example.uniton4.MainViewModel
 import com.example.uniton4.NavigateScreenType
 import com.example.uniton4.R
-import com.example.uniton4.databinding.FragmentReceivedSadLetterDialogBinding
+import com.example.uniton4.databinding.FragmentMyPageBinding
+import com.example.uniton4.databinding.FragmentWriteCheerBinding
+import com.example.uniton4.databinding.FragmentWriteSadLetterBinding
 import com.example.uniton4.extensions.closeSelf
 
-class ReceivedSadLetterDialogFragment private constructor() : DialogFragment(),
-    View.OnClickListener {
-    private lateinit var binding: FragmentReceivedSadLetterDialogBinding
+class WriteCheerFragment : DialogFragment(), View.OnClickListener {
+    private lateinit var binding: FragmentWriteCheerBinding
     private val parentViewModel: MainViewModel by activityViewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(STYLE_NORMAL, R.style.TransparentTheme)
@@ -28,7 +31,7 @@ class ReceivedSadLetterDialogFragment private constructor() : DialogFragment(),
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentReceivedSadLetterDialogBinding.inflate(inflater)
+        binding = FragmentWriteCheerBinding.inflate(inflater)
         return binding.root
     }
 
@@ -52,21 +55,23 @@ class ReceivedSadLetterDialogFragment private constructor() : DialogFragment(),
         }
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance() = ReceivedSadLetterDialogFragment()
-    }
-
     override fun onClick(view: View?) {
         when (view) {
-            binding.closeButton->{
+            binding.closeButton -> {
+                Log.d("coqkf","close")
 //                closeSelf()
                 parentViewModel.navigateByReplace(NavigateScreenType.RECEIVED_CHEER_UP_LETTER)
             }
-            binding.writeButton->{
-                // TODO: save letter.
-                parentViewModel.navigateByAdd(NavigateScreenType.WRITE_CHEER)
+            binding.writeButton -> {
+                // TODO 작성완료
             }
         }
     }
+
+    companion object {
+        @JvmStatic
+        fun newInstance() = WriteCheerFragment()
+    }
+
+
 }
