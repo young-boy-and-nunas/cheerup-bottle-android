@@ -25,7 +25,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.loginJoinButton.setOnClickListener(this)
-
+        binding.loginButton.setOnClickListener(this)
     }
 
     companion object {
@@ -36,6 +36,10 @@ class LoginFragment : Fragment(), View.OnClickListener {
         when (view) {
             binding.loginJoinButton -> {
                 parentViewModel.navigateByAdd(NavigateScreenType.JOIN)
+            }
+            binding.loginButton -> {
+                //임시!!
+                parentViewModel.navigateByReplace(NavigateScreenType.RECEIVED_CHEER_UP_LETTER)
             }
             else -> Unit
         }

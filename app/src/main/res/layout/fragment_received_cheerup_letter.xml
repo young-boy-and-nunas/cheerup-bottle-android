@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
 
     <data>
+
         <variable
             name="listener"
             type="com.example.uniton4.presentation.cheeruplatter.adapter.ReceivedCheerUpLetterListener"
@@ -9,12 +14,31 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/appCompatImageView"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/logo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="위로해줘 유리병"
+            android:textColor="@color/text_color"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView"
+            app:layout_constraintStart_toEndOf="@+id/appCompatImageView"
+            app:layout_constraintTop_toTopOf="@+id/appCompatImageView"
+            />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/settingIcon"
@@ -29,7 +53,7 @@
             android:id="@+id/bottleNumberCardView"
             android:layout_width="70dp"
             android:layout_height="28dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="16dp"
             app:cardCornerRadius="15dp"
             app:cardElevation="6dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -41,20 +65,24 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
+                android:padding="4dp"
                 >
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_setting_outlined"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/logo"
                     />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/text_style"
                     android:id="@+id/numberTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="3"
+                    style="@style/text_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="4dp"
+                    android:gravity="center"
+                    android:textColor="@color/main_color"
+                    android:text="99+"
                     />
             </LinearLayout>
 
@@ -78,11 +106,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:backgroundTint="@color/sub_color2"
             android:src="@drawable/ic_plus"
-            app:tint="@color/white"
-            android:background="?android:attr/selectableItemBackground"
+            app:fabSize="normal"
+            app:borderWidth="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@color/white"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

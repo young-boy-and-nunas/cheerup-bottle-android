@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import com.example.uniton4.MainViewModel
+import com.example.uniton4.NavigateScreenType
 import com.example.uniton4.R
 import com.example.uniton4.databinding.FragmentWriteSadLetterBinding
 import com.example.uniton4.databinding.FragmentWriteSadLetterImageBinding
@@ -20,6 +23,7 @@ import kotlin.reflect.KClass
 class WriteSadLetterFragment: Fragment() {
     private lateinit var binding: FragmentWriteSadLetterBinding
     private val viewModel: WriteSadLetterViewModel by viewModels()
+    private val parentViewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,6 +72,10 @@ class WriteSadLetterFragment: Fragment() {
             WriteSadLetterCompleteDialogFragment
                 .newInstance()
                 .show(childFragmentManager, WriteSadLetterCompleteDialogFragment::class.java.name)
+        }
+
+        binding.backButton.setOnClickListener {
+            parentViewModel.navigateByReplace(NavigateScreenType.RECEIVED_CHEER_UP_LETTER)
         }
     }
 
