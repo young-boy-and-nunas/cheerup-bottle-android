@@ -39,8 +39,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
                 parentViewModel.navigateByAdd(NavigateScreenType.JOIN)
             }
             binding.loginButton -> {
-                //임시!!
-                parentViewModel.navigateByReplace(NavigateScreenType.RECEIVED_CHEER_UP_LETTER)
+                parentViewModel.navigateByReplace(NavigateScreenType.RECEIVED_SAD_LETTER)
             }
             else -> Unit
         }
