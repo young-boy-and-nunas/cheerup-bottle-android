@@ -67,11 +67,4 @@ class WriteCheerFragment : DialogFragment(), View.OnClickListener {
             }
         }
     }
-
-    companion object {
-        @JvmStatic
-        fun newInstance() = WriteCheerFragment()
-    }
-
-
 }
