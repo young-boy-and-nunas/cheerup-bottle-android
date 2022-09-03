@@ -4,13 +4,20 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.uniton4.presentation.LoginFragment
 import com.example.uniton4.presentation.ReceivedSadLetterFragment
+import com.example.uniton4.presentation.cheeruplatter.ReceivedCheerUpLetterFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        navigateToFragment(checkLoginState())
+        supportFragmentManager.beginTransaction()
+            .add(R.id.fragment_container, ReceivedCheerUpLetterFragment.newInstance())
+            .commit()
+
+       // navigateToFragment(checkLoginState())
     }
 
     private fun navigateToFragment(isLoggedIn: Boolean) {
