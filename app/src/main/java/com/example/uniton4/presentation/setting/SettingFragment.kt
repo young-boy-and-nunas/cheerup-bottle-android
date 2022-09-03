@@ -5,11 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import com.example.uniton4.MainViewModel
+import com.example.uniton4.NavigateScreenType
 import com.example.uniton4.R
 import com.example.uniton4.databinding.FragmentSettingBinding
 import com.example.uniton4.extensions.closeSelf
 
 class SettingFragment private constructor() : Fragment(), View.OnClickListener {
+    private val parentViewModel: MainViewModel by activityViewModels()
     private lateinit var binding: FragmentSettingBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,10 +37,9 @@ class SettingFragment private constructor() : Fragment(), View.OnClickListener {
                 closeSelf()
             }
             binding.mypage -> {
-
             }
             binding.removeAccount -> {
-
+                parentViewModel.navigateByAdd(NavigateScreenType.REMOVE_ACCOUNT)
             }
         }
     }
