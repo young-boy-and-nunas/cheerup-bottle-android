@@ -50,6 +50,10 @@ class ReceivedCheerUpLetterFragment : Fragment(), ReceivedCheerUpLetterListener 
                     adapter.submitList(state.list)
                     setCountText(state.list.size)
                 }
+
+                is ReceivedCheerUpLetterUiState.Empty -> {
+                    binding.numberTextView.text = "0"
+                }
             }
         }
     }

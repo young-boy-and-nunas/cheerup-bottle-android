@@ -27,7 +27,11 @@ class ReceivedCheerUpLetterViewModel @Inject constructor(
             val cheers = async { cheerRepository.selectCheers() }.await()
             if (cheers.isSuccess) {
                 cheers.getOrNull()?.let {
-                    setState(ReceivedCheerUpLetterUiState.Success(it))
+                    if(it.isEmpty()) {
+                        setState(ReceivedCheerUpLetterUiState.Empty)
+                    } else {
+                        setState(ReceivedCheerUpLetterUiState.Success(it))
+                    }
                 } ?: run {
                     setState(ReceivedCheerUpLetterUiState.Empty)
                 }
