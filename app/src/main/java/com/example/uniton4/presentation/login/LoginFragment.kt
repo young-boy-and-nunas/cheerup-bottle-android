@@ -71,8 +71,4 @@ class LoginFragment : Fragment(), View.OnClickListener {
             else -> Unit
         }
     }
-
-    companion object {
-        fun newInstance() = LoginFragment()
-    }
 }

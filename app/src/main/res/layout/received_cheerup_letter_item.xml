@@ -15,8 +15,9 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_margin="16dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
         android:clipToPadding="false"
         app:cardCornerRadius="10dp"
         app:cardElevation="4dp"
@@ -33,7 +34,7 @@
                 style="@style/text_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{ entity.title }"
+                android:text="sehee님의 사연"
                 android:textColor="@color/gray2"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -46,12 +47,12 @@
                 style="@style/text_style"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:maxLines="2"
                 android:ellipsize="end"
-                android:text="@{ entity.description }"
+                android:text="@{ entity.contents }"
                 android:textColor="@color/text_color"
-                app:layout_constraintEnd_toStartOf="@+id/imagePreview"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView"
@@ -64,40 +65,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="@{ entity.date }"
                 android:textColor="@color/gray2"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/contents"
-                tools:text="2022.9.3 (토)"
+                android:text="2022.9.3 (토)"
                 />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginStart="8dp"
-                android:src="@drawable/ic_mic"
-                app:layout_constraintBottom_toBottomOf="@id/date"
-                app:layout_constraintStart_toEndOf="@id/date"
-                app:layout_constraintTop_toTopOf="@+id/date"
-                />
-
-            <ImageView
-                android:id="@+id/imagePreview"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/background_radius10_gray3"
-                android:padding="26dp"
-                app:layout_constraintStart_toEndOf="@id/contents"
-                android:src="@drawable/ic_picture"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/white"
-                />
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>

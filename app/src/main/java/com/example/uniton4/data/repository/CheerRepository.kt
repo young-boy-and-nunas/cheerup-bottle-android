@@ -1,6 +1,7 @@
 package com.example.uniton4.data.repository
 
 import com.example.uniton4.data.ServiceApi
+import com.example.uniton4.domain.ReceivedCheerUpLetterEntity
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
@@ -8,11 +9,15 @@ class CheerRepository @Inject constructor(
     private val localRepository: LocalRepository,
     private val serviceApi: ServiceApi
 ) {
-    suspend fun selectCheers() {
+    suspend fun selectCheers(): Result<List<ReceivedCheerUpLetterEntity>> {
         return try {
-        //    serviceApi.selectLimit20Cheer(localRepository.getUserKey().first() ?: "")
+            Result.success(
+                serviceApi.selectLimit20Cheer(
+                    "Bearer ${localRepository.getUserKey().first() ?: ""}"
+                )
+            )
         } catch (e: Exception) {
-
+            Result.failure(e)
         }
     }
 
@@ -27,7 +32,7 @@ class CheerRepository @Inject constructor(
 
     suspend fun makeCheer(): Result<Boolean> {
         return try {
-           // serviceApi.makeCheer()
+            // serviceApi.makeCheer()
             Result.success(true)
         } catch (e: Exception) {
             Result.failure(e)

@@ -17,7 +17,7 @@ enum class NavigateScreenType(val fragment: Fragment) {
     RECEIVED_CHEER_UP_LETTER(ReceivedCheerUpLetterFragment.newInstance()),
     RECEIVED_SAD_LETTER(ReceivedSadLetterFragment.newInstance()),
     RECEIVED_SAD_LETTER_DIALOG(ReceivedSadLetterDialogFragment.newInstance()),
-    LOGIN(LoginFragment.newInstance()),
+    LOGIN(LoginFragment()),
     JOIN(JoinFragment.newInstance()),
     SETTING(SettingFragment.newInstance()),
     REMOVE_ACCOUNT(RemoveAccountDialogFragment.newInstance()),
