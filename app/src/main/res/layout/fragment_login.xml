@@ -15,12 +15,15 @@
 
     <TextView
         android:id="@+id/login_id_label"
-        style="@style/login_input_label_style"
+        style="@style/text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="20dp"
         android:inputType="textEmailAddress"
         android:text="아이디"
         android:visibility="invisible"
         app:layout_constraintLeft_toLeftOf="@+id/login_id_edittext"
-        app:layout_constraintTop_toBottomOf="@+id/login_header_container" />
+        app:layout_constraintTop_toBottomOf="@id/login_header_container" />
 
     <EditText
         android:id="@+id/login_id_edittext"

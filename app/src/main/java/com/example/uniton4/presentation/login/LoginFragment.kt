@@ -12,7 +12,7 @@ import com.example.uniton4.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment(), View.OnClickListener {
     private val parentViewModel: MainViewModel by activityViewModels()
-    lateinit var binding: FragmentLoginBinding
+    private lateinit var binding: FragmentLoginBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
