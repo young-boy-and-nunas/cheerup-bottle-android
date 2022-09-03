@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#55000000"
-        tools:context=".presentation.receivedsadletter.ReceivedSadLetterDialogFragment">
+        tools:context=".presentation.receivedsadletter.dialog.ReceivedSadLetterDialogFragment">
 
         <androidx.cardview.widget.CardView
             android:layout_width="310dp"

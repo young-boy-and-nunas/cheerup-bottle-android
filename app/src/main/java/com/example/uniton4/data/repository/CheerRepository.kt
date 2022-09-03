@@ -30,9 +30,16 @@ class CheerRepository @Inject constructor(
         }
     }
 
-    suspend fun makeCheer(): Result<Boolean> {
+    suspend fun makeCheer(
+        contents: String,
+        worryId: Int
+    ): Result<Boolean> {
         return try {
-            // serviceApi.makeCheer()
+            serviceApi.makeCheer(
+                "Bearer ${localRepository.getUserKey().first() ?: ""}",
+                contents,
+                worryId = worryId
+            )
             Result.success(true)
         } catch (e: Exception) {
             Result.failure(e)
