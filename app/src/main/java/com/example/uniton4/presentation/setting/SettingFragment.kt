@@ -25,7 +25,9 @@ class SettingFragment private constructor() : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.settingContainer.setOnTouchListener { _, _ ->
+            return@setOnTouchListener true
+        }
         binding.backButton.setOnClickListener(this)
         binding.mypage.setOnClickListener(this)
         binding.removeAccount.setOnClickListener(this)

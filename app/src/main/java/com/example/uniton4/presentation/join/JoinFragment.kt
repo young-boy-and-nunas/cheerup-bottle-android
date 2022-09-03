@@ -31,6 +31,9 @@ class JoinFragment private constructor() : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.container.setOnTouchListener { _, _ ->
+            return@setOnTouchListener true
+        }
         binding.joinBackButton.setOnClickListener(this)
         binding.joinButton.setOnClickListener(this)
 

@@ -31,6 +31,9 @@ class RemoveAccountDialogFragment private constructor() : DialogFragment(), View
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setFullScreen()
+        binding.container.setOnTouchListener { _, _ ->
+            return@setOnTouchListener true
+        }
         binding.panel.cancel_button.setOnClickListener(this)
         binding.panel.confirm_button.setOnClickListener(this)
     }
@@ -46,11 +49,11 @@ class RemoveAccountDialogFragment private constructor() : DialogFragment(), View
     }
 
     override fun onClick(view: View?) {
-        when(view){
-            binding.panel.cancel_button->{
+        when (view) {
+            binding.panel.cancel_button -> {
                 closeSelf()
             }
-            binding.panel.confirm_button->{
+            binding.panel.confirm_button -> {
                 closeSelf()
             }
         }

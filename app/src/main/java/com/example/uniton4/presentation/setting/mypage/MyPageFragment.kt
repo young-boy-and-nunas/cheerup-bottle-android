@@ -9,7 +9,7 @@ import com.example.uniton4.R
 import com.example.uniton4.databinding.FragmentMyPageBinding
 import com.example.uniton4.extensions.closeSelf
 
-class MyPageFragment private constructor(): Fragment() {
+class MyPageFragment private constructor() : Fragment() {
     private lateinit var binding: FragmentMyPageBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,6 +21,9 @@ class MyPageFragment private constructor(): Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.mypageContainer.setOnTouchListener { _, _ ->
+            return@setOnTouchListener true
+        }
         binding.backButton.setOnClickListener {
             closeSelf()
         }
