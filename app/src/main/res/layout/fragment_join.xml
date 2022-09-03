@@ -79,7 +79,6 @@
             style="@style/login_input_style"
             android:hint="이메일"
             android:inputType="textEmailAddress"
-            android:maxLines="1"
             android:text="@={ viewModel.emailLiveData }"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun addFragment(type: NavigateScreenType) {
         supportFragmentManager.beginTransaction()
-            .add(R.id.fragment_container, type.fragment)
+            .add(R.id.fragment_container, type.fragment, /* tag = */ type.name)
             .addToBackStack(type.name)
             .commit()
     }
