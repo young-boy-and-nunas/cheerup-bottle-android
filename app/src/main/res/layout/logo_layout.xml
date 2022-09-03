@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/logo_image"
+        android:layout_width="78dp"
+        android:layout_height="78dp"
+        android:src="@drawable/logo"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/logo_description_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="7dp"
+        app:layout_constraintBottom_toBottomOf="@+id/logo_image"
+        app:layout_constraintLeft_toRightOf="@id/logo_image"
+        app:layout_constraintTop_toTopOf="@+id/logo_image">
+
+        <TextView
+            android:id="@+id/service_name_text"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="위로해줘 유리병"
+            android:textColor="@color/text_color"
+            app:layout_constraintLeft_toLeftOf="@+id/logo_description_container"
+            app:layout_constraintTop_toTopOf="@+id/logo_description_container" />
+
+        <TextView
+            android:id="@+id/service_description_text"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="유리병이 당신의 사연을 위로해드립니다."
+            android:textColor="@color/gray2"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/service_name_text" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
