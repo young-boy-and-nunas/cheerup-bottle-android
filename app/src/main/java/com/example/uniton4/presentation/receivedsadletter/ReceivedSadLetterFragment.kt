@@ -30,6 +30,7 @@ class ReceivedSadLetterFragment private constructor() : Fragment(), View.OnClick
         super.onViewCreated(view, savedInstanceState)
         binding.cheerupButton.setOnClickListener(this)
         binding.ignoreButton.setOnClickListener(this)
+        binding.header.headerSettingButton.setOnClickListener(this)
     }
 
     companion object {
@@ -45,6 +46,9 @@ class ReceivedSadLetterFragment private constructor() : Fragment(), View.OnClick
             }
             binding.ignoreButton -> {
                 parentViewModel.navigateByReplace(NavigateScreenType.RECEIVED_CHEER_UP_LETTER)
+            }
+            binding.header.headerSettingButton -> {
+                parentViewModel.navigateByAdd(NavigateScreenType.SETTING)
             }
             else -> Unit
         }
