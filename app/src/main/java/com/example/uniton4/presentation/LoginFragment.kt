@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.uniton4.R
 
-class LoginFragment private constructor() : Fragment() {
+class LoginFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +22,6 @@ class LoginFragment private constructor() : Fragment() {
     }
 
     companion object {
-        @JvmStatic
         fun newInstance() = LoginFragment()
     }
 }
