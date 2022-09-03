@@ -36,7 +36,7 @@ class ReceivedCheerUpLetterFragment: Fragment() {
         binding.recyclerView.adapter = adapter
         adapter.submitList(createMockData())
         binding.addButton.setOnClickListener {
-            parentViewModel.setNavigateScreenType(NavigateScreenType.WRITE_SED_LETTER)
+            parentViewModel.navigateByReplace(NavigateScreenType.WRITE_SED_LETTER)
         }
     }
 
