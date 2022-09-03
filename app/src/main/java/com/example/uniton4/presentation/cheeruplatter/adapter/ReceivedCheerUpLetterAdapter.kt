@@ -5,9 +5,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.uniton4.domain.ReceivedCheerUpLetterEntity
 
-class ReceivedCheerUpLetterAdapter: ListAdapter<ReceivedCheerUpLetterEntity, ReceivedCheerUpLetterViewHolder>(DiffItemCallback()) {
+class ReceivedCheerUpLetterAdapter(
+    private val listener: ReceivedCheerUpLetterListener
+): ListAdapter<ReceivedCheerUpLetterEntity, ReceivedCheerUpLetterViewHolder>(DiffItemCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReceivedCheerUpLetterViewHolder {
-        return ReceivedCheerUpLetterViewHolder.from(parent)
+        return ReceivedCheerUpLetterViewHolder.from(parent, listener)
     }
 
     override fun onBindViewHolder(holder: ReceivedCheerUpLetterViewHolder, position: Int) {
@@ -16,7 +18,7 @@ class ReceivedCheerUpLetterAdapter: ListAdapter<ReceivedCheerUpLetterEntity, Rec
 
     private class DiffItemCallback : DiffUtil.ItemCallback<ReceivedCheerUpLetterEntity>() {
         override fun areItemsTheSame(oldItem: ReceivedCheerUpLetterEntity, newItem: ReceivedCheerUpLetterEntity): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.cheerId == newItem.cheerId
         }
 
         override fun areContentsTheSame(oldItem: ReceivedCheerUpLetterEntity, newItem: ReceivedCheerUpLetterEntity): Boolean {

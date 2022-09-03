@@ -1,8 +1,11 @@
 package com.example.uniton4.domain
 
-data class ReceivedCheerUpLetterEntity (
-    val id: String,
-    val title: String,
-    val description: String,
-    val image: String
+data class ReceivedCheerUpLetterEntity(
+    val audioUrl: String,
+    val cheerId: Int,
+    val contents: String,
+    val imgUrl: String,
+    val userId: String,
+    val worryDto: RandomWorryEntity,
+    val worryId: Int
 )
