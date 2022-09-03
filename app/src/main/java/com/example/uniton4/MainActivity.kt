@@ -12,7 +12,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        navigateToFragment(checkLoginState())
+
+        val targetScreenType = intent.getIntExtra(TARGET_SCREEN, NavigateScreenType.LOGIN.ordinal)
+        navigateToFragmentByType(targetScreenType)
         observe()
     }
 
@@ -39,12 +41,19 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
-    private fun navigateToFragment(isLoggedIn: Boolean) {
-        when {
-            isLoggedIn -> addFragment(NavigateScreenType.RECEIVED_SAD_LETTER)
-            else -> addFragment(NavigateScreenType.LOGIN)
+    private fun navigateToFragmentByType(type: Int) {
+        when (type) {
+            NavigateScreenType.LOGIN.ordinal -> {
+                addFragment(NavigateScreenType.LOGIN)
+            }
+            NavigateScreenType.RECEIVED_CHEER_UP_LETTER.ordinal -> {
+                addFragment(NavigateScreenType.RECEIVED_SAD_LETTER)
+            }
         }
     }
 
-    private fun checkLoginState(): Boolean = false
+
+    companion object {
+        const val TARGET_SCREEN = "target_screen"
+    }
 }
