@@ -68,14 +68,14 @@
                 android:inputType="textMultiLine"
                 android:textColor="@color/text_color"
                 android:theme="@style/EditTextTheme"
-                app:layout_constraintBottom_toTopOf="@id/text"
+                app:layout_constraintBottom_toTopOf="@id/write_button"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/date" />
 
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/text"
+                android:id="@+id/write_button"
                 style="@style/text_style"
                 android:layout_width="260dp"
                 android:layout_height="32dp"
