@@ -18,8 +18,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observe() {
-        viewModel.navigateType.observe(this) { type ->
+        viewModel.navigateByReplace.observe(this) { type ->
             replaceFragment(type)
+        }
+
+        viewModel.navigateByAdd.observe(this) { type ->
+            addFragment(type)
         }
     }
 
@@ -32,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     private fun addFragment(type: NavigateScreenType) {
         supportFragmentManager.beginTransaction()
             .add(R.id.fragment_container, type.fragment)
+            .addToBackStack(type.name)
             .commit()
     }
 

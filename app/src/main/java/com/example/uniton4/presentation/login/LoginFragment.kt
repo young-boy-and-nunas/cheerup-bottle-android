@@ -35,7 +35,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
     override fun onClick(view: View?) {
         when (view) {
             binding.loginJoinButton -> {
-                parentViewModel.setNavigateScreenType(NavigateScreenType.JOIN)
+                parentViewModel.navigateByAdd(NavigateScreenType.JOIN)
             }
             else -> Unit
         }
