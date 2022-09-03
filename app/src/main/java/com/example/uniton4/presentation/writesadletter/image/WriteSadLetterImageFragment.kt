@@ -1,17 +1,50 @@
 package com.example.uniton4.presentation.writesadletter.image
 
+import android.Manifest
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import com.example.uniton4.databinding.FragmentWriteSadLetterBinding
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import com.example.uniton4.data.request.ContentUriRequestBody
 import com.example.uniton4.databinding.FragmentWriteSadLetterImageBinding
-import com.example.uniton4.databinding.FragmentWriteSadLetterTextBinding
+import com.example.uniton4.presentation.writesadletter.WriteSadLetterViewModel
+import com.gun0912.tedpermission.PermissionListener
+import com.gun0912.tedpermission.coroutine.TedPermission
+import kotlinx.coroutines.launch
 
-class WriteSadLetterImageFragment: Fragment() {
-    lateinit var binding: FragmentWriteSadLetterImageBinding
+class WriteSadLetterImageFragment : Fragment() {
+    private lateinit var binding: FragmentWriteSadLetterImageBinding
+    private val parentViewModel: WriteSadLetterViewModel by viewModels({ requireParentFragment() })
 
+    private val imageResultLaunch =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val imageUrl = result.data?.data
+                imageUrl?.let {
+                    val requestImageUri = ContentUriRequestBody(requireContext(), imageUrl)
+                    showGalleryImage(imageUrl)
+                    Log.e("@222", imageUrl.toString())
+                }
+            }
+        }
+
+    private fun showGalleryImage(imageUrl: Uri) {
+        binding.selectedImage.setImageURI(imageUrl)
+        parentViewModel.activeCompleteButton()
+        binding.selectedImage.visibility = View.VISIBLE
+        binding.selectedImage.visibility = View.GONE
+    }
+
+    // 완료버튼 눌렀을 때 데이터 전송되도록 해야함.
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -23,6 +56,20 @@ class WriteSadLetterImageFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initViews()
+    }
+
+    private fun initViews() {
+        binding.dottedContainer.setOnClickListener {
+            startDefaultGalleryApp()
+        }
+    }
+
+    private fun startDefaultGalleryApp() {
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        imageResultLaunch.launch(intent)
     }
 
     companion object {

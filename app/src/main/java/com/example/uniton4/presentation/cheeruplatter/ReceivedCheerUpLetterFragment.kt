@@ -47,53 +47,60 @@ class ReceivedCheerUpLetterFragment: Fragment() {
         return listOf(
             ReceivedCheerUpLetterEntity(
                 id = "1",
-                title = "gd",
-                description = "asdlgkjasdk",
+                title = "djksdk 님의 사연",
+                description = "제가 일은 똑바로 한 거 같은데 사수님이 자꾸 혼을\n" +
+                        "내요 ㅡㅡ.. 그럴거면 너가 하시던가요~~",
+                date = "2022.9.3 (토)",
                 image = ""
             ),
             ReceivedCheerUpLetterEntity(
                 id = "1",
-                title = "gd",
-                description = "asdlgkjasdk",
+                title = "djksdk 님의 사연",
+                description = "제가 일은 똑바로 한 거 같은데 사수님이 자꾸 혼을\n" +
+                        "내요 ㅡㅡ.. 그럴거면 너가 하시던가요~~",
+                date = "2022.9.3 (토)",
                 image = ""
             ),
             ReceivedCheerUpLetterEntity(
                 id = "1",
-                title = "gd",
-                description = "asdlgkjasdk",
+                title = "djksdk 님의 사연",
+                description = "제가 일은 똑바로 한 거 같은데 사수님이 자꾸 혼을\n" +
+                        "내요 ㅡㅡ.. 그럴거면 너가 하시던가요~~",
+                date = "2022.9.3 (토)",
                 image = ""
             ),
             ReceivedCheerUpLetterEntity(
                 id = "1",
-                title = "gd",
-                description = "asdlgkjasdk",
+                title = "djksdk 님의 사연",
+                description = "제가 일은 똑바로 한 거 같은데 사수님이 자꾸 혼을\n" +
+                        "내요 ㅡㅡ.. 그럴거면 너가 하시던가요~~",
+                date = "2022.9.3 (토)",
                 image = ""
             ),
             ReceivedCheerUpLetterEntity(
                 id = "1",
-                title = "gd",
-                description = "asdlgkjasdk",
+                title = "djksdk 님의 사연",
+                description = "제가 일은 똑바로 한 거 같은데 사수님이 자꾸 혼을\n" +
+                        "내요 ㅡㅡ.. 그럴거면 너가 하시던가요~~",
+                date = "2022.9.3 (토)",
                 image = ""
             ),
             ReceivedCheerUpLetterEntity(
                 id = "1",
-                title = "gd",
-                description = "asdlgkjasdk",
+                title = "djksdk 님의 사연",
+                description = "제가 일은 똑바로 한 거 같은데 사수님이 자꾸 혼을\n" +
+                        "내요 ㅡㅡ.. 그럴거면 너가 하시던가요~~",
+                date = "2022.9.3 (토)",
                 image = ""
             ),
             ReceivedCheerUpLetterEntity(
                 id = "1",
-                title = "gd",
-                description = "asdlgkjasdk",
+                title = "djksdk 님의 사연",
+                description = "제가 일은 똑바로 한 거 같은데 사수님이 자꾸 혼을\n" +
+                        "내요 ㅡㅡ.. 그럴거면 너가 하시던가요~~",
+                date = "2022.9.3 (토)",
                 image = ""
             ),
-            ReceivedCheerUpLetterEntity(
-                id = "1",
-                title = "gd",
-                description = "asdlgkjasdk",
-                image = ""
-            ),
-
         )
     }
     
