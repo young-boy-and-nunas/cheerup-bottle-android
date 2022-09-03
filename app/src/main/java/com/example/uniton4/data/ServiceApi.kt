@@ -7,6 +7,7 @@ import com.example.uniton4.domain.UserEntity
 import okhttp3.MultipartBody
 import retrofit2.http.*
 import com.example.uniton4.domain.LoginEntity
+import com.example.uniton4.domain.ReceivedCheerUpLetterEntity
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -63,7 +64,7 @@ interface ServiceApi {
     @GET("/cheer/select/20")
     suspend fun selectLimit20Cheer(
         @Header("Authorization") auth: String,
-    )
+    ): List<ReceivedCheerUpLetterEntity>
 
     @POST("/cheer/update-check")
     suspend fun updateCheck(

@@ -12,7 +12,11 @@ class UserRepository @Inject constructor(
 
     suspend fun getUser(): Result<UserEntity> {
         return try {
-            Result.success(serviceApi.getUser(localRepository.getUserKey().first() ?: ""))
+            Result.success(
+                serviceApi.getUser(
+                    "Bearer ${localRepository.getUserKey().first() ?: ""}"
+                )
+            )
         } catch (e: Exception) {
             Result.failure(e)
         }
@@ -20,7 +24,9 @@ class UserRepository @Inject constructor(
 
     suspend fun withThrowUser(): Result<Boolean> {
         return try {
-            serviceApi.withThrowUser(localRepository.getUserKey().first() ?: "")
+            serviceApi.withThrowUser(
+                "Bearer ${localRepository.getUserKey().first() ?: ""}"
+            )
             Result.success(true)
         } catch (e: Exception) {
             Result.failure(e)

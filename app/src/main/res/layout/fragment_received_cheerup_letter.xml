@@ -4,10 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="listener"
             type="com.example.uniton4.presentation.cheeruplatter.adapter.ReceivedCheerUpLetterListener" />
+
+        <variable
+            name="uiState"
+            type="com.example.uniton4.presentation.cheeruplatter.ReceivedCheerUpLetterUiState"
+            />
+
+        <import type="com.example.uniton4.presentation.cheeruplatter.ReceivedCheerUpLetterUiState"/>
+        <import type="android.view.View"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -49,7 +56,6 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="4dp"
                     android:gravity="center"
-                    android:text="99+"
                     android:textColor="@color/main_color" />
             </LinearLayout>
 
@@ -60,12 +66,29 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="vertical"
+            android:layout_marginTop="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:visibility="@{ uiState instanceof  ReceivedCheerUpLetterUiState.Success ? View.VISIBLE : View.GONE }"
             app:layout_constraintTop_toBottomOf="@+id/bottleNumberCardView"
             tools:listitem="@layout/received_cheerup_letter_item" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/text_style"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:textColor="@color/gray2"
+            android:textSize="24sp"
+            android:text="아직 도착한 사연이 없어요."
+            android:visibility="@{ uiState instanceof  ReceivedCheerUpLetterUiState.Empty ? View.VISIBLE : View.GONE }"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header"
+            />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addButton"

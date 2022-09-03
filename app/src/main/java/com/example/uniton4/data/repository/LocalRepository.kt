@@ -11,17 +11,11 @@ import kotlinx.coroutines.flow.map
 import java.io.IOException
 import javax.inject.Inject
 
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(LocalRepository.DATASTORE_NAME)
+
 class LocalRepository @Inject constructor(
     @ApplicationContext private val context: Context
 ) {
-
-    companion object {
-        private const val DATASTORE_NAME = "auth_key"
-        private val ACCESS_KEY = stringPreferencesKey("access_key")
-    }
-
-    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(DATASTORE_NAME)
-
     fun getUserKey(): Flow<String?> {
         return context.dataStore.data
             .catch {
@@ -42,4 +36,8 @@ class LocalRepository @Inject constructor(
         }
     }
 
+    companion object {
+        const val DATASTORE_NAME = "auth_key"
+        private val ACCESS_KEY = stringPreferencesKey("access_key")
+    }
 }

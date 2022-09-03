@@ -14,7 +14,7 @@ class WorryRepository @Inject constructor(
         return try {
             Result.success(
                 serviceApi.getRandomWorry(
-                    localRepository.getUserKey().first() ?: ""
+                    "Bearer ${localRepository.getUserKey().first() ?: ""}"
                 )
             )
         } catch (e: Exception) {
