@@ -1,94 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.login.LoginFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout
-        android:id="@+id/login_header_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <data>
 
-        <include layout="@layout/logo_layout" />
-    </FrameLayout>
+        <variable
+            name="viewModel"
+            type="com.example.uniton4.presentation.login.LoginViewModel" />
 
-    <TextView
-        android:id="@+id/login_id_label"
-        style="@style/text_style"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_marginTop="20dp"
-        android:inputType="textEmailAddress"
-        android:text="아이디"
-        android:visibility="invisible"
-        app:layout_constraintLeft_toLeftOf="@+id/login_id_edittext"
-        app:layout_constraintTop_toBottomOf="@id/login_header_container" />
+        <variable
+            name="uiState"
+            type="com.example.uniton4.presentation.login.LoginUiState" />
 
-    <EditText
-        android:id="@+id/login_id_edittext"
-        style="@style/login_input_style"
-        android:hint="아이디"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_id_label" />
+        <import type="com.example.uniton4.presentation.login.LoginUiState" />
 
-    <TextView
-        android:id="@+id/login_password_label"
-        style="@style/login_input_label_style"
-        android:text="비밀번호"
-        android:visibility="invisible"
-        app:layout_constraintLeft_toLeftOf="@id/login_password_edittext"
-        app:layout_constraintTop_toBottomOf="@id/login_id_edittext" />
-
-    <EditText
-        android:id="@+id/login_password_edittext"
-        style="@style/login_input_style"
-        android:hint="비밀번호"
-        android:inputType="textPassword"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_password_label" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/login_button"
-        style="@style/login_button_style"
-        android:layout_marginTop="80dp"
-        android:background="@drawable/button_background"
-        android:text="로그인"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_password_edittext" />
+        <import type="android.view.View" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_button">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.login.LoginFragment">
 
-        <TextView
-            android:id="@+id/login_join_label"
-            style="@style/login_join_description_style"
-            android:text="아직 회원이 아니세요?"
+        <FrameLayout
+            android:id="@+id/login_header_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="116dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include layout="@layout/logo_layout" />
+        </FrameLayout>
 
         <TextView
-            android:id="@+id/login_join_button"
-            style="@style/login_join_button_style"
-            android:layout_marginLeft="32dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="회원가입"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toRightOf="@+id/login_join_label"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/login_id_label"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginTop="20dp"
+            android:inputType="textEmailAddress"
+            android:text="아이디"
+            android:visibility="invisible"
+            app:layout_constraintLeft_toLeftOf="@+id/login_id_edittext"
+            app:layout_constraintTop_toBottomOf="@id/login_header_container" />
+
+        <EditText
+            android:id="@+id/login_id_edittext"
+            style="@style/login_input_style"
+            android:hint="아이디"
+            android:text="@={ viewModel.emailLiveData }"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/login_id_label" />
+
+        <TextView
+            android:id="@+id/login_password_label"
+            style="@style/login_input_label_style"
+            android:text="비밀번호"
+            android:visibility="invisible"
+            app:layout_constraintLeft_toLeftOf="@id/login_password_edittext"
+            app:layout_constraintTop_toBottomOf="@id/login_id_edittext" />
+
+        <EditText
+            android:id="@+id/login_password_edittext"
+            style="@style/login_input_style"
+            android:hint="비밀번호"
+            android:inputType="textPassword"
+            android:text="@={ viewModel.passwordLiveData }"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/login_password_label" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/login_button"
+            style="@style/login_button_style"
+            android:layout_marginTop="80dp"
+            android:background="@drawable/button_background"
+            android:clickable="@{ viewModel.isActivatedLogin ? true : false }"
+            android:text="로그인"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/login_password_edittext" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_button">
+
+            <TextView
+                android:id="@+id/login_join_label"
+                style="@style/login_join_description_style"
+                android:text="아직 회원이 아니세요?"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/login_join_button"
+                style="@style/login_join_button_style"
+                android:layout_marginLeft="32dp"
+                android:text="회원가입"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="@+id/login_join_label"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
