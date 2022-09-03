@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.example.uniton4.MainViewModel
 import com.example.uniton4.NavigateScreenType
@@ -15,7 +16,7 @@ import com.example.uniton4.databinding.FragmentReceivedSadLetterDialogBinding
 
 class ReceivedSadLetterFragment private constructor() : Fragment(), View.OnClickListener {
     private lateinit var binding: FragmentReceivedSadLetterBinding
-    private val parentViewModel: MainViewModel by viewModels()
+    private val parentViewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,9 +28,8 @@ class ReceivedSadLetterFragment private constructor() : Fragment(), View.OnClick
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        requireActivity().supportFragmentManager.beginTransaction()
-//            .add(ReceivedSadLetterDialogFragment.newInstance(), "tag")
-//            .commit()
+        binding.cheerupButton.setOnClickListener(this)
+        binding.ignoreButton.setOnClickListener(this)
     }
 
     companion object {
