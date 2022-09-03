@@ -1,18 +1,22 @@
 package com.example.uniton4.presentation.login
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.example.uniton4.MainViewModel
 import com.example.uniton4.NavigateScreenType
 import com.example.uniton4.databinding.FragmentLoginBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginFragment : Fragment(), View.OnClickListener {
     private val parentViewModel: MainViewModel by activityViewModels()
+    private val viewModel: LoginViewModel by viewModels()
     private lateinit var binding: FragmentLoginBinding
 
     override fun onCreateView(
@@ -20,6 +24,8 @@ class LoginFragment : Fragment(), View.OnClickListener {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentLoginBinding.inflate(inflater)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
@@ -27,10 +33,27 @@ class LoginFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         binding.loginJoinButton.setOnClickListener(this)
         binding.loginButton.setOnClickListener(this)
+
+        observe()
     }
 
-    companion object {
-        fun newInstance() = LoginFragment()
+    private fun observe() {
+        viewModel.isActivatedLogin.observe(viewLifecycleOwner) {
+            binding.loginButton.isActivated = it
+        }
+
+        viewModel.uiState.observe(viewLifecycleOwner) { state ->
+            binding.uiState = state
+            when (state) {
+                LoginUiState.Failed -> {
+                    Toast.makeText(requireContext(), "로그인에 실패했습니다", Toast.LENGTH_SHORT).show()
+                }
+                LoginUiState.Success -> {
+                    parentViewModel.navigateByReplace(NavigateScreenType.LOGIN)
+                }
+                else -> Unit
+            }
+        }
     }
 
     override fun onClick(view: View?) {
@@ -39,9 +62,17 @@ class LoginFragment : Fragment(), View.OnClickListener {
                 parentViewModel.navigateByAdd(NavigateScreenType.JOIN)
             }
             binding.loginButton -> {
-                parentViewModel.navigateByReplace(NavigateScreenType.RECEIVED_SAD_LETTER)
+                viewModel.login(
+                    binding.loginIdEdittext.text.toString(),
+                    binding.loginPasswordEdittext.text.toString(),
+                )
+//                parentViewModel.navigateByReplace(NavigateScreenType.RECEIVED_SAD_LETTER)
             }
             else -> Unit
         }
+    }
+
+    companion object {
+        fun newInstance() = LoginFragment()
     }
 }
